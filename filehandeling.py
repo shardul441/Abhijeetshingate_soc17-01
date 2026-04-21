@@ -1,20 +1,22 @@
-# Write mode
-with open("sample.txt", "w") as file:
-    file.write("Hello, this is the first line in the file.\n")
-    file.write("File handling in Python is easy to learn.\n")
-print("Data written successfully.\n")
+def read_file():
+    filename = input("Enter the filename: ")
 
-# Read mode
-with open("sample.txt", "r") as file:
-    print("Reading file contents:")
-    print(file.read())
+    try:
+        # Try to open the file in read mode
+        with open(filename, 'r') as file:
+            content = file.read()
+            print("\nFile Content:\n")
+            print(content)
 
-# Append mode
-with open("sample.txt", "a") as file:
-    file.write("This line is added using append mode.\n")
-print("\nData appended successfully.\n")
+    except FileNotFoundError:
+        print("Error: The file does not exist.")
 
-# Read updated file
-with open("sample.txt", "r") as file:
-    print("Updated file contents:")
-    print(file.read())
+    except PermissionError:
+        print("Error: You do not have permission to read this file.")
+
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+
+
+# Call the function
+read_file()
